@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="bg-gray-800 text-white rounded-lg p-4 m-4">
+        <div class="flex justify-between items-center mb-4">
+            <div>
+                <h1 class="text-2xl text-green-400 font-bold">{{ user }}</h1>
+            </div>
+            <div>
+{#                <span class="mr-4">Asked: {{ question_count }}</span>#}
+{#                <span>Answered: {{ answer_count }}</span>#}
+                <a href="{%  url 'other_user_questions' user.id %}" class="no-underline hover:underline decoration-green-400"><span class="bg-black p-2 rounded-lg ">Asked: {{ question_count }}</span></a>
+                <a href="{%  url 'other_user_answers' user.id %}" class="no-underline hover:underline decoration-green-400"><span class="bg-black p-2 rounded-lg ">Answered: {{ answer_count }}</span></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

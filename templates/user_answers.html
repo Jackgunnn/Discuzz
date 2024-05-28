@@ -1,0 +1,44 @@
+{#{% extends 'base.html' %}#}
+{##}
+{#{% block content %}#}
+{#    {% if answers %}#}
+{#        {% for answer in answers %}#}
+{#           <div class="bg-gray-900 p-4 rounded-lg mb-2 shadow-md">#}
+{#                <div>#}
+{#                    <p class="text-xl font-semibold text-white mb-1"><h2>you answered:</h2> "{{ answer.answer }}" to "{{ answer.question }}"</p>#}
+{#                </div>#}
+{#            </div>#}
+{#        {%  endfor %}#}
+{#    {% else %}#}
+{#        <div>No questions asked so far...</div>#}
+{#    {% endif %}#}
+{#{% endblock %}#}
+{##}
+
+
+
+{% extends 'base.html' %}
+
+{% block content %}     
+    {% if answers %}
+        {% for answer in answers %}
+           <div class="bg-gray-900 p-4 rounded-lg mb-2 shadow-md">
+                <div class="flex justify-between items-center text-gray-400 text-sm">
+                    <a href="{% url 'show_answer' answer.question_id %}" class="no-underline hover:underline decoration-green-400">{{ answer.question }}</a>
+                    <h2 class="text-xl font-semibold text-white mb-1">{{ answer.answer }}</h2>
+                    <p>Answered on: {{ answer.answered_at }}</p>
+                    <form action="{% url 'user_answers' %}" method="post" class="mt-2" onsubmit="return confirm('Are you sure you want to delete this question?');">
+                    {% csrf_token %}
+                    <input type="hidden" name="answer_id" value="{{ answer.id }}">
+                    <button type="submit" class="bg-rose-600 hover:bg-rose-400 text-white font-bold px-2 py-1 border-b-4 border-rose-700 hover:border-rose-500 rounded-md">
+                        Delete
+                    </button>
+                </form>
+                </div>
+
+            </div>
+        {%  endfor %}
+    {% else %}
+        <div class="bg-gray-900 p-4 rounded-lg shadow-lg font-semibold text-xl">No questions answered so far...</div>
+    {% endif %}
+{% endblock %}

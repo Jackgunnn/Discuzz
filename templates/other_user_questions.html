@@ -1,0 +1,18 @@
+{%  extends "base.html" %}
+
+{% block content %}
+    {% if questions %}
+        {% for question in questions %}
+            <div class="bg-gray-900 p-4 rounded-lg mb-2 shadow-md">
+                <div class="flex justify-between items-center text-gray-400 text-sm">
+{#                 <p>{{ answer.question }}</p>#}
+                    <a href="{% url 'show_answer' question.id %}"><h2 class="text-xl hover:text-green-400 font-semibold text-white mb-1">{{ question }}</h2></a>
+                <p> Answered on: {{ question.asked_at }}</p>
+            
+                </div>
+            </div>
+        {% endfor %}
+    {%  else %}
+        <div class="bg-gray-900 p-4 rounded-lg shadow-lg font-semibold text-xl">This user hasn't asked any questions so far...</div>
+    {%  endif %}
+{% endblock %}

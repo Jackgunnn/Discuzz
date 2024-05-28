@@ -1,0 +1,47 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="bg-black">
+
+    <!-- Navigation Bar -->
+    <nav class="flex items-center justify-between p-4 border-b border-white">
+        <div>
+            <a href="{% url 'home' %}" class="bg-green-600 hover:bg-green-400 text-white font-bold py-1 px-2 border-b-4 border-green-700 hover:border-green-500 rounded">Home</a>
+            <a href="{% url 'ask_question' %}" class="bg-green-600 hover:bg-green-400 text-white font-bold py-1 px-2 border-b-4 border-green-700 hover:border-green-500 rounded">Ask Question</a>
+        </div>
+        <!-- Add more navigation links here -->
+        <div>
+        {% if user.is_authenticated %}
+            <a href="{% url 'user_profile' %}" class="bg-green-600 hover:bg-green-400 text-white font-bold py-1 px-2 border-b-4 border-green-700 hover:border-green-500 rounded">Profile</a>
+            <a href="{% url 'logout' %}" class="bg-green-600 hover:bg-green-400 text-white font-bold py-1 px-2 border-b-4 border-green-700 hover:border-green-500 rounded">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="bg-green-600 hover:bg-green-400 text-white font-bold py-1 px-2 border-b-4 border-green-700 hover:border-green-500 rounded">Login</a>
+            <a href="{% url 'register' %}" class="bg-green-600 hover:bg-green-400 text-white font-bold py-1 px-2 border-b-4 border-green-700 hover:border-green-500 rounded">Register</a>
+        {% endif %}
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="bg-gray-800 text-center text-white rounded-lg p-4 m-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    {% block answers %}
+    {% endblock %}
+    
+    <!-- Footer -->
+    <footer class="text-center border-t border-white p-4 m-2">
+        <a href="#" class="text-green-400">About</a>
+        <p class="text-white">&copy; Discuzz - my first django project</p>
+    </footer>
+
+    <!-- Add your JavaScript links here -->
+
+    </body>
+    </html>

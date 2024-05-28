@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Ask Question{% endblock %}
+
+{% block content %}
+    <form method="post" class="max-w-md mx-auto mt-8 shadow-md p-8 bg-black rounded-lg">
+    {% csrf_token %}
+    <div class="mb-4">
+        <label for="question" class="block text-sm font-medium text-white">Ask Question</label>
+        <textarea rows="5" cols="50" type="text" name="question" id="question" class="mt-1 p-2 w-full max-w-full text-black border rounded-md"></textarea>
+    </div>
+    <button type="submit" class="w-full bg-green-600 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded-md">
+        Ask
+    </button>
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    <div class="max-w-md mx-auto mt-8 bg-black text-white p-6 rounded-lg shadow-md">
+  <h1 class="text-2xl font-semibold mb-4">Register</h1>
+  <form method="post" class="mb-6">
+    {% csrf_token %}
+    <div class="mb-4">
+        <label for="username" class="block text-sm font-medium text-white">Username</label>
+        <input type="text" name="username" id="username" class="mt-1 p-2 w-full text-black border rounded-md">
+        <!-- USERNAME ERROR -->
+        <div class="text-rose-500">
+            {% if form.username.errors %}
+                <p>{{ form.username.errors }}</p>
+            {% endif %}
+        </div>
+    </div>
+  
+    <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-white">Email</label>
+        <input type="email" name="email" id="email" class="mt-1 p-2 w-full text-black border rounded-md">
+    </div>
+  
+    <div class="mb-4">
+        <label for="password1" class="block text-sm font-medium text-white">Password</label>
+        <input type="password" name="password1" id="password1" class="mt-1 p-2 w-full text-black border rounded-md">
+    </div>
+  
+    <div class="mb-4">
+        <label for="password2" class="block text-sm font-medium text-white">Confirm Password</label>
+        <input type="password" name="password2" id="password2" class="mt-1 p-2 w-full text-black border rounded-md">
+        <!-- PASSWORD ERROR -->
+        <div class="text-rose-500">
+            {% if not form.username.errors %}
+                <p>{{ form.password2.errors }}</p>
+            {% endif %}
+        </div>
+    </div>
+    <button type="submit" class="w-full bg-green-600 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded-md">
+        Sign Up
+    </button>
+</form>
+    </div>
+
+
+{% endblock %}

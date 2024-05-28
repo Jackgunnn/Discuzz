@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Answers - {{ question.question }}{% endblock %}
+
+
+{% block content %}
+    <div class="bg-gray-900 p-4 rounded-lg mb-2 shadow-md">
+        <div class="flex justify-between items-center text-gray-400 text-sm">
+            <p>Asked by: <a href="{% url 'other_user_profile' question.asked_by_id %}" class="no-underline hover:underline decoration-green-400">{{ question.asked_by }}</a></p>
+            <h2 class="text-xl font-semibold text-white mb-2">{{ question.question }}</h2>
+            <p>Asked on: {{ question.asked_at }}</p>
+        </div>
+    </div>
+    
+    {% if user.is_authenticated %}
+    <form method="post" class="max-w-md mx-auto mt-4 shadow-md p-4 bg-black rounded-lg">
+        {% csrf_token %}
+        <div class="mb-2">
+            <label for="answer" class="block text-sm font-medium text-white">Type your answer below:</label>
+            <textarea rows="3" cols="50" type="text" name="answer" id="answer" class="mt-1 p-2 w-full text-black border rounded-md"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-green-600 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded-md">
+            Answer
+        </button>
+    </form>
+    {% endif %}
+{% endblock %}
+
+{% block answers %}
+    <div class="bg-gray-800 text-center text-white rounded-lg p-4 m-4">
+        {% if answers %}
+        <h1 class="text-xl text-left text-green-600 mb-2">Answers:</h1>
+            {% for answer in answers %}
+                <div class="bg-gray-900 p-4 rounded-lg mb-2 shawdow-md">
+                    <div class="flex justify-between items-center text-gray-400 text-sm">
+                        <p>Answered by: <a href="{% url 'other_user_profile' answer.answered_by_id %}" class="no-underline hover:underline decoration-green-400">{{ answer.answered_by }}</a></p>
+                        <h2 class="text-xl font-semibold text-white mb-1">{{ answer.answer }}</h2>
+                        <p>Answered on: {{ answer.answered_at }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+    {% else %}
+        <p class="text-xl text-left text-rose-600 mt-4">No answers for this question :(</p>
+    {% endif %}
+    </div>
+
+{% endblock %}
