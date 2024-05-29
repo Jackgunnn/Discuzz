@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 
 def home1(request):
     questions = Question.objects.all().order_by("-asked_at")
-    paginator = Paginator(questions,2)
+    paginator = Paginator(questions,10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'homepage_with_pagination.html', {'page_obj':page_obj, 'questions':questions})
@@ -52,9 +52,10 @@ def logout(request):
 @login_required
 def user_profile(request):
     user_id = request.user.id
+    user = User.objects.get(id=user_id)
     question_count = Question.objects.filter(asked_by=user_id).count()
     answer_count = Answer.objects.filter(answered_by=user_id).count()
-    return render(request, 'user_profile.html', {"question_count": question_count, "answer_count": answer_count})
+    return render(request, 'user_profile.html', {"user": user,"question_count": question_count, "answer_count": answer_count})
 
 
 def edit_profile(request):
