@@ -1,5 +1,9 @@
 {%  extends "base.html" %}
 
+{% block title %} {{ user }} - Answers {% endblock %}
+	
+
+
 {% block content %}
     {% if answers %}
         {% for answer in answers %}
