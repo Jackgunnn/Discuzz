@@ -6,7 +6,7 @@
 
         {% if questions %}
             {% for question in page_obj %}
-                <div class="bg-gray-900 p-4 rounded-lg mb-2 shadow-lg">
+                <div class="bg-gray-900 p-2 rounded-lg mb-1 shadow-lg">
                     <div class="flex justify-between items-center text-gray-400 text-sm">
                         <p>Asked by: <a href="{% url 'other_user_profile' question.asked_by_id %}" class="no-underline hover:underline decoration-green-400">{{ question.asked_by }}</a></p>
                         <a href="{% url 'show_answer' question.id %}">
