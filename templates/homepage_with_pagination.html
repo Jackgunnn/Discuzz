@@ -8,11 +8,11 @@
             {% for question in page_obj %}
                 <div class="bg-gray-900 p-2 rounded-lg mb-1 shadow-lg">
                     <div class="flex justify-between items-center text-gray-400 text-sm">
-                        <p>Asked by: <a href="{% url 'other_user_profile' question.asked_by_id %}" class="no-underline hover:underline decoration-green-400">{{ question.asked_by }}</a></p>
+                        <p class="px-2">Asked by: <a href="{% url 'other_user_profile' question.asked_by_id %}" class="no-underline hover:underline decoration-green-400">{{ question.asked_by }}</a></p>
                         <a href="{% url 'show_answer' question.id %}">
                             <h2 class="text-xl hover:text-green-400 font-semibold text-white ">{{ question.question }}</h2>
                         </a>
-                        <p>Asked on: {{ question.asked_at }}</p>
+                        <p class="px-2">Asked on: {{ question.asked_at }}</p>
                     </div>
                 </div>
             {% endfor %}

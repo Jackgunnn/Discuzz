@@ -3,12 +3,12 @@
 {% block content %}
     {% if answers %}
         {% for answer in answers %}
-            <div class="bg-gray-900 p-4 rounded-lg mb-2 shadow-md">
+            <div class="bg-gray-900 p-2 rounded-lg mb-1 shadow-lg">
                 <div class="flex justify-between items-center text-gray-400 text-sm">
-                 <a href="{% url 'show_answer' answer.question_id %}" class="no-underline hover:underline decoration-green-400">{{ answer.question }}</a>
+                 <a href="{% url 'show_answer' answer.question_id %}" class="no-underline hover:underline decoration-green-400 px-2">{{ answer.question }}</a>
                 <h2 class="text-xl font-semibold text-white mb-1">{{ answer.answer }}</h2>
-                <p> Answered on: {{ answer.answered_at }}</p>
-            
+                <p class="px-2"> Answered on: {{ answer.answered_at }}</p>
+
                 </div>
             </div>
         {% endfor %}
