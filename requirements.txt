@@ -41,7 +41,6 @@ python-http-client==3.3.7
 pytz==2023.3.post1
 pyvista==0.43.4
 pyvistaqt==0.11.0
-pywin32==306
 pyzmq==25.1.2
 QtPy==2.4.1
 requests==2.31.0
